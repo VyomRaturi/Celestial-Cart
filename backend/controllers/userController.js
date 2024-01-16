@@ -1,4 +1,4 @@
-const ErrorHandler = require("../utils/errorhandler");
+const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const User = require("../models/userModel");
 const sendToken = require("../utils/jwtToken");
@@ -247,7 +247,7 @@ exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
         role: req.body.role,
     };
 
-    const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+    await User.findByIdAndUpdate(req.params.id, newUserData, {
         new: true,
         runValidators: true,
         useFindAndModify: false,
@@ -269,7 +269,10 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
             )
         );
     }
-    //TODO Remove avatar from cloudinary
+
+    const imageId = user.avatar.public_id;
+
+    await cloudinary.v2.uploader.destroy(imageId);
 
     await User.deleteOne({ _id: req.params.id });
 

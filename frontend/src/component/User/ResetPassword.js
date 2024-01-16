@@ -24,7 +24,6 @@ const ResetPassword = () => {
 
     const resetPasswordSubmit = (e) => {
         e.preventDefault();
-        console.log("token", token);
 
         const myForm = new FormData();
 

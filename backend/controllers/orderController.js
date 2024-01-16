@@ -40,8 +40,6 @@ exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
         "name email"
     );
 
-    console.log(order);
-
     if (!order) {
         return next(new ErrorHandler("No order found with this ID", 404));
     }
@@ -93,9 +91,11 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
         );
     }
 
-    order.orderItems.forEach(async (item) => {
-        await updateStock(item.product, item.quantity);
-    });
+    if (req.body.status === "Shipped") {
+        order.orderItems.forEach(async (item) => {
+            await updateStock(item.product, item.quantity);
+        });
+    }
 
     order.orderStatus = req.body.status;
 
