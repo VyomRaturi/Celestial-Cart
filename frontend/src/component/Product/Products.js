@@ -18,9 +18,9 @@ const categories = [
     "Tops",
     "Attire",
     "Camera",
-    "SmartPhones",
-    "heater",
-    "sample",
+    "Accessories",
+    "Phone",
+    "Other",
 ];
 
 const Products = ({ match }) => {

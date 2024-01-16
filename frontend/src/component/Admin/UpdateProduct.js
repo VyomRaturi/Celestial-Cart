@@ -48,8 +48,7 @@ const UpdateProduct = () => {
         "Attire",
         "Camera",
         "Accessories",
-        "BakeryItems",
-        "Cycle",
+        "Phone",
         "Other",
     ];
 

@@ -39,8 +39,7 @@ const NewProduct = () => {
         "Attire",
         "Camera",
         "Accessories",
-        "BakeryItems",
-        "Cycle",
+        "Phone",
         "Other",
     ];
 
