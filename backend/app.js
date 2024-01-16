@@ -7,7 +7,10 @@ const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
 const path = require("path");
 
-dotenv.config({ path: "backend/config/config.env" });
+//?Config
+if (process.env.NODE_ENV !== "PRODUCTION") {
+    require("dotenv").config({ path: "backend/config/config.env" });
+}
 
 app.use(express.json());
 app.use(cookieParser());
